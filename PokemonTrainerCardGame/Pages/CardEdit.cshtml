@@ -1,0 +1,67 @@
+﻿@page
+@model PokemonTrainerCardGame.Pages.CardEditModel
+@{
+    ViewData["Title"] = "PTCG卡牌編輯";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="py-2">
+			<select class="" id="cardSetList">
+					<option selected>系列選擇</option>
+			</select>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 px-0 mr-2" style="overflow-y:auto;max-height:450px;">
+			<table id="cardShowStage" class="table table-striped table-bordered table-hover" style="background-color:lightblue;">
+				<thead class="thead-dark">
+					<tr>
+						<th class="" style="text-align:center";>卡片系列</th>
+						<th class="">卡片編號</th>
+						<th class="">卡片屬性</th>
+						<th class="">卡片類別</th>
+						<th class="">卡片細項</th>
+						<th class="">卡片特殊規則</th>
+						<th class="">卡片名稱</th>
+						<th class="">卡圖預覽</th>
+					</tr>
+				</thead>
+				<tbody style="">
+				</tbody>
+			</table>
+		</div>
+		<div id="singleCardInfo" class="col-4" style="background-color:lightgreen;height:500px">
+			<div class="row p-2 m-2" style:"">
+				<form id="CardInfoForm" enctype="multipart/form-data">
+					<div class:"form-group">
+						<input type="hidden" name="CardId" id="cardIdForAdd">
+						<label>系列選擇
+							<select class="" id="cardSetForAdd" name="CardSetNum">
+								<option selected>系列選擇</option>
+							</select>
+						</label>
+						<label>卡片類別
+							<select class="" id="cardTypeForAdd" name="CardTypeNum">
+								<option selected>卡片類別</option>
+							</select>
+						</label>
+						<label >卡片編號<input type="text" class="form-control" id="txtCardNum" name="CardNum"></label>
+						<label >卡片名稱<input type="text" class="form-control" id="txtCardName" name="CardName"/></label>
+						<div>
+							<input type="file" id="cardImgInput" name="CardImg" accept=".jpg, .jpeg, .png">
+							<img id="previewCardImgInput" src="#" style="max-width:140px;max-height:450px"/>
+						</div>
+						<div>
+							<input type="submit" value="新增卡片" id="formSubmitBtn"/>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
