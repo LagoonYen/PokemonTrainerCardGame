@@ -1,0 +1,23 @@
+﻿@page
+@model PokemonTrainerCardGame.Pages.CardEditTest.CardEditProModel
+@{
+
+}
+
+<div>
+    <form method="post">
+
+        <div>
+            <label asp-for="@Model.Sele.VersionEnvironment" class="control-label"></label>
+            <input asp-for="@Model.Sele.VersionEnvironment" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="@Model.Sele.Number" class="control-label"></label>
+            <input asp-for="@Model.Sele.Number" class="form-control" />
+        </div>
+
+        <input type="submit" asp-page-handler="Edit" />
+    </form>
+
+</div>
+

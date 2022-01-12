@@ -1,0 +1,92 @@
+﻿@page
+@model PokemonTrainerCardGame.Pages.CardEdit.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Card</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Card.Id" />
+            <div class="form-group">
+                <label asp-for="Card.Version" class="control-label"></label>
+                <input asp-for="Card.Version" class="form-control" />
+                <span asp-validation-for="Card.Version" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.VersionEnviroment" class="control-label"></label>
+                <input asp-for="Card.VersionEnviroment" class="form-control" />
+                <span asp-validation-for="Card.VersionEnviroment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.Number" class="control-label"></label>
+                <input asp-for="Card.Number" class="form-control" />
+                <span asp-validation-for="Card.Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.Rank" class="control-label"></label>
+                <input asp-for="Card.Rank" class="form-control" />
+                <span asp-validation-for="Card.Rank" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.SpecialRule" class="control-label"></label>
+                <input asp-for="Card.SpecialRule" class="form-control" />
+                <span asp-validation-for="Card.SpecialRule" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.Type" class="control-label"></label>
+                <input asp-for="Card.Type" class="form-control" />
+                <span asp-validation-for="Card.Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.TypeDetail" class="control-label"></label>
+                <input asp-for="Card.TypeDetail" class="form-control" />
+                <span asp-validation-for="Card.TypeDetail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.HP" class="control-label"></label>
+                <input asp-for="Card.HP" class="form-control" />
+                <span asp-validation-for="Card.HP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.Name" class="control-label"></label>
+                <input asp-for="Card.Name" class="form-control" />
+                <span asp-validation-for="Card.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.Attribute" class="control-label"></label>
+                <input asp-for="Card.Attribute" class="form-control" />
+                <span asp-validation-for="Card.Attribute" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Card.ImgSrc" class="control-label"></label>
+                <input asp-for="Card.ImgSrc" class="form-control" />
+                <span asp-validation-for="Card.ImgSrc" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="Card.CreatTime" class="control-label"></label>
+                <input asp-for="Card.CreatTime" class="form-control" />
+                <span asp-validation-for="Card.CreatTime" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Card.UpdateTime" class="control-label"></label>
+                <input asp-for="Card.UpdateTime" class="form-control" />
+                <span asp-validation-for="Card.UpdateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" /> 
+                <button class="btn btn-primary" style="color:yellow"><a asp-page="./Index">返回列表</a></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
