@@ -1,0 +1,81 @@
+﻿@page
+@model PokemonTrainerCardGame.Pages.CardEditTest.CardIndexProModel
+@{
+}
+<button class="btn btn-warning"><a asp-page="/CardEditTest/CardInsertPro">新增卡片</a></button>
+<div class="container">
+	<div class="row">
+		<div class="col-12 px-0 mr-2" style="overflow-y:auto;max-height:450px;">
+			<table id="cardShowStage" class="table table-striped table-bordered table-hover" style="background-color:lightblue;">
+				<thead class="thead-dark">
+					<tr>
+						<th class="">系列</th>
+						<th class="">環境</th>
+						<th class="">編號</th>
+						<th class="">稀有度</th>
+						<th class="">特殊規則</th>
+						<th class="">類別</th>
+						<th class="">細項</th>
+						<th class="">HP@*@Html.DisplayNameFor(model => Model.CardInfoDB[0].HP)*@</th>
+						<th class="">名稱</th>
+						<th class="">屬性</th>
+						<th class="">圖片預覽</th>
+						<th class="">新增時間</th>
+						<th class="">修改時間</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+                    @foreach (var item in Model.CardInfoDB){
+                     <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Version)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VersionEnvironment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Number)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rank)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SpecialRule)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TypeDetail)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Hp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Attribute)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ImgUrl)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReleaseDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpdateDate)
+                        </td>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.Id">編輯</a> |
+                            <a asp-page="./Details" asp-route-id="@item.Id">查看</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.Id">刪除</a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,77 @@
+﻿@page
+@model PokemonTrainerCardGame.Pages.CardEditTest.CardInsertProModel
+@{
+    ViewData["Title"] = "CardInsertPro";
+}
+<h1>Insert</h1>
+<div class="container">
+    <div class="row">
+        <form method="post">
+            <div class="">
+                <label asp-for="@Model.CardInfoDB.Version" class="control-label">系列</label>
+                <input asp-for="@Model.CardInfoDB.Version" class="form-control">
+            </div>
+            <div class="">
+                <label asp-for="@Model.CardInfoDB.VersionEnvironment" class="control-label">環境</label>
+                <input asp-for="@Model.CardInfoDB.VersionEnvironment" class="form-control">
+            </div>
+            <div>
+                <label asp-for="@Model.CardInfoDB.Number" class="control-label">編號</label>
+                <input asp-for="@Model.CardInfoDB.Number" class="form-control">
+            </div>
+            <div>
+                <label asp-for="@Model.CardInfoDB.Rank" class="control-label">稀有度</label>
+                <input asp-for="@Model.CardInfoDB.Rank" class="form-control">
+            </div>
+            <div>
+                <label asp-for="@Model.CardInfoDB.SpecialRule" class="control-label">特殊規則</label>
+                <input asp-for="@Model.CardInfoDB.SpecialRule" class="form-control">
+            </div>
+            <div>
+                <label asp-for="@Model.CardInfoDB.Type" class="control-label">類別</label>
+                <input asp-for="@Model.CardInfoDB.Type" class="form-control">
+            </div>
+            <div>
+                <label asp-for="@Model.CardInfoDB.TypeDetail" class="control-label">細項</label>
+                <input asp-for="@Model.CardInfoDB.TypeDetail" class="form-control">
+            </div>
+            <div>
+                <label asp-for="@Model.CardInfoDB.Hp" class="control-label">HP</label>
+                <input asp-for="@Model.CardInfoDB.Hp" class="form-control">
+            </div>
+            <div>
+                <label asp-for="@Model.CardInfoDB.Name" class="control-label">名稱</label>
+                <input asp-for="@Model.CardInfoDB.Name" class="form-control">
+            </div>
+            <div>
+                <label asp-for="@Model.CardInfoDB.Attribute" class="control-label">屬性</label>
+                <input asp-for="@Model.CardInfoDB.Attribute" class="form-control">
+            </div>
+            <div>
+                <label asp-for="@Model.CardInfoDB.ImgUrl" class="control-label">圖片預覽</label>
+                <input asp-for="@Model.CardInfoDB.ImgUrl" type="file" id="cardImgInput" accept=".jpg, .jpeg, .png" class="form-control">
+				<img id="previewCardImgInput" src="#" style="max-width:140px;max-height:450px"/>
+            </div>
+
+            <input type="submit" asp-page-handler="Insert" />
+        </form>
+    </div>
+</div>
+
+<script>
+    //圖片上傳後預覽圖片
+		$("#cardImgInput").change(function(){
+			readURL(this);
+		})
+
+		function readURL(input){
+			if(input.files && input.files[0]){
+				var reader = new FileReader();
+				reader.onload = function (e){
+                    console.log("上傳圖片")
+					$("#previewCardImgInput").attr('src',e.target.result);
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+</script>

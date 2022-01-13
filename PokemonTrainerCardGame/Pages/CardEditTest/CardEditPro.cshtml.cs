@@ -10,7 +10,7 @@ namespace PokemonTrainerCardGame.Pages.CardEditTest
     {
 
         //https://localhost:44307/CardEditTest/CardEditPro
-        //[BindProperty]
+        [BindProperty]
         public CardInfomationPro Sele { get; set; }
         public string Now { get; set; }
         

@@ -10,6 +10,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PokemonTrainerCardGame.Data;
+using PokemonTrainerCardGame.Service;
+using PokemonTrainerCardGame.Repository;
+using PokemonTrainerCardGame.Common;
 
 namespace PokemonTrainerCardGame
 {
@@ -29,6 +32,12 @@ namespace PokemonTrainerCardGame
 
             services.AddDbContext<PokemonTrainerCardGameContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PokemonTrainerCardGameContext")));
+            services.AddDbContext<PokemonTrainerCardGameContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("PTCGDB")));
+            services.AddScoped<CardService, CardServiceImp>();
+            services.AddScoped<CardRepository, CardRepositoryImp>();
+            services.AddScoped<AppSetting, AppSettingImp>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
