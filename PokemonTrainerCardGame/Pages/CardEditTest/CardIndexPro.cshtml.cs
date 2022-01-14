@@ -19,14 +19,36 @@ namespace PokemonTrainerCardGame.Pages.CardEditTest
 
         public IEnumerable<CardInfomationPro> CardInfoDB { get; set; }
 
-        public void OnGet()
+        [BindProperty(SupportsGet = true)]
+        public string SearchString { get; set; }
+
+        public async void OnGetAsync()
         {
             IEnumerable<CardInfomationPro> card = _cardService.OnGetAllCard();
+
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                if (SearchString.Contains(" "))
+                {
+                    var spliteSearchString = SearchString.Split(" ");
+                    for(var i = 0; i < spliteSearchString.Length; i++)
+                    {
+                        var Keywords = spliteSearchString[i];
+                        card = card.Where(x => x.Name.Contains(Keywords) || x.Version.Contains(Keywords));
+                    }
+                }
+                else
+                {
+                    card = card.Where(x => x.Name.Contains(SearchString));
+                }
+            }
+            
 
             card.OrderBy(x => x.Version)
                 .ThenBy(x => x.Number)
                 .Select(x => new CardInfomationPro
                 {
+                    Id = x.Id,
                     Version = x.Version,
                     VersionEnvironment = x.VersionEnvironment,
                     Number = x.Number,

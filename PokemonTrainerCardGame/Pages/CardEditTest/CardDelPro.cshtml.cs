@@ -1,19 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Newtonsoft.Json;
 using PokemonTrainerCardGame.Models;
 using PokemonTrainerCardGame.Service;
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PokemonTrainerCardGame.Pages.CardEditTest
 {
-    public class CardEditProModel : PageModel
+    public class CardDelProModel : PageModel
     {
         private readonly CardService _cardService;
 
-        public CardEditProModel(CardService cardService)
+        public CardDelProModel(CardService cardService)
         {
             _cardService = cardService;
         }
@@ -36,10 +33,10 @@ namespace PokemonTrainerCardGame.Pages.CardEditTest
             return Page();
         }
 
-        public IActionResult OnPostEdit([FromForm] CardInfomationPro CardInfoDB)
+        public IActionResult OnPostDel([FromForm] CardInfomationPro CardInfoDB)
         {
             CardInfomationPro NewCardData = CardInfoDB;
-            _cardService.OnPostEdit(NewCardData);
+            _cardService.OnPostDel(NewCardData);
             return RedirectToPage("./CardIndexPro");
         }
     }

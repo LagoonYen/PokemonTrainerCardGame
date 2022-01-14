@@ -13,6 +13,7 @@ using PokemonTrainerCardGame.Data;
 using PokemonTrainerCardGame.Service;
 using PokemonTrainerCardGame.Repository;
 using PokemonTrainerCardGame.Common;
+using PokemonTrainerCardGame.Models;
 
 namespace PokemonTrainerCardGame
 {
@@ -32,12 +33,16 @@ namespace PokemonTrainerCardGame
 
             services.AddDbContext<PokemonTrainerCardGameContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PokemonTrainerCardGameContext")));
-            services.AddDbContext<PokemonTrainerCardGameContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("PTCGDB")));
-            services.AddScoped<CardService, CardServiceImp>();
-            services.AddScoped<CardRepository, CardRepositoryImp>();
+            //services.AddDbContext<PokemonTrainerCardGameContext>(options =>
+                    //options.UseSqlServer(Configuration.GetConnectionString("PTCGDB")));
+            //services.AddScoped<CardService, CardServiceImp>();
+            services.AddScoped<CardService, CardServiceImpEF>();
+            //services.AddScoped<CardRepository, CardRepositoryImp>();
+            services.AddScoped<CardRepository, CardRepositoryImpEF>();
             services.AddScoped<AppSetting, AppSettingImp>();
-            
+
+            services.AddTransient<PTCGWebApplicationContext>();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

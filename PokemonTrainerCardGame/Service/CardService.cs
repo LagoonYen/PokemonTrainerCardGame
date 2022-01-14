@@ -5,8 +5,18 @@ namespace PokemonTrainerCardGame.Service
 {
     public interface CardService
     {
+        //搜尋
         IEnumerable<CardInfomationPro> OnGetAllCard();
-        int OnPostInsert(CardInfomationPro card);
+        CardInfomationPro GetCardInfoById(int id);
+        IEnumerable<CardInfomationPro> Search();
 
+        //新增
+        int OnPostInsert(CardInfomationPro card);
+        
+        //修改
+        int OnPostEdit(CardInfomationPro card);
+        
+        //刪除
+        int OnPostDel(CardInfomationPro card);
     }
 }

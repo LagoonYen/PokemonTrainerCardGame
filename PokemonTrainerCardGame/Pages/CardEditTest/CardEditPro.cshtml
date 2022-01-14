@@ -5,18 +5,64 @@
 }
 
 <div>
-    <form method="post">
-
+    <form method="post" asp-for="@Model.CardInfoDB.Id">
         <div>
-            <label asp-for="@Model.Sele.VersionEnvironment" class="control-label"></label>
-            <input asp-for="@Model.Sele.VersionEnvironment" class="form-control" />
+            <label class="control-label">DB編號</label>
+            <input asp-for="@Model.CardInfoDB.Id" class="form-control" readonly="readonly">
         </div>
         <div>
-            <label asp-for="@Model.Sele.Number" class="control-label"></label>
-            <input asp-for="@Model.Sele.Number" class="form-control" />
+            <label asp-for="@Model.CardInfoDB.Version" class="control-label"></label>
+            <input asp-for="@Model.CardInfoDB.Version" class="form-control" />
         </div>
-
-        <input type="submit" asp-page-handler="Edit" />
+        <div>
+            <label asp-for="@Model.CardInfoDB.VersionEnvironment" class="control-label"></label>
+            <input asp-for="@Model.CardInfoDB.VersionEnvironment" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="@Model.CardInfoDB.Number" class="control-label"></label>
+            <input asp-for="@Model.CardInfoDB.Number" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="@Model.CardInfoDB.Rank" class="control-label"></label>
+            <input asp-for="@Model.CardInfoDB.Rank" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="@Model.CardInfoDB.SpecialRule" class="control-label"></label>
+            <input asp-for="@Model.CardInfoDB.SpecialRule" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="@Model.CardInfoDB.Type" class="control-label"></label>
+            <input asp-for="@Model.CardInfoDB.Type" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="@Model.CardInfoDB.TypeDetail" class="control-label"></label>
+            <input asp-for="@Model.CardInfoDB.TypeDetail" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="@Model.CardInfoDB.Hp" class="control-label"></label>
+            <input asp-for="@Model.CardInfoDB.Hp" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="@Model.CardInfoDB.Name" class="control-label"></label>
+            <input asp-for="@Model.CardInfoDB.Name" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="@Model.CardInfoDB.Attribute" class="control-label"></label>
+            <input asp-for="@Model.CardInfoDB.Attribute" class="form-control" />
+        </div>
+        <div>
+            <label asp-for="@Model.CardInfoDB.ImgUrl" class="control-label"></label>
+            <input asp-for="@Model.CardInfoDB.ImgUrl" class="form-control" />
+        </div>
+        <div>
+            <label class="control-label">建立時間</label>
+            <input asp-for="@Model.CardInfoDB.ReleaseDate" class="form-control" readonly="readonly">
+        </div>
+        <div>
+            <label class="control-label">修改時間</label>
+            <input asp-for="@Model.CardInfoDB.UpdateDate" class="form-control" readonly="readonly">
+        </div>
+        <input type="submit" asp-page-handler="Edit"/>
     </form>
 
 </div>
