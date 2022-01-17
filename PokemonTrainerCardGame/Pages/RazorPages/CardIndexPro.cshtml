@@ -1,11 +1,11 @@
 ﻿@page "{searchString?}"
-@model PokemonTrainerCardGame.Pages.CardEditTest.CardIndexProModel
+@model PokemonTrainerCardGame.Pages.RazorPages.CardIndexProModel
 @{
 }
 <div class="my-2">
    <div class="search">
        <form>
-            <button class="btn btn-warning my-2"><a asp-page="/CardEditTest/CardInsertPro">新增卡片</a></button>
+            <button class="btn btn-warning my-2"><a asp-page="/RazorPages/CardInsertPro">新增卡片</a></button>
             <input autocomplete="off" type="search" asp-for="SearchString" class="searchTerm" placeholder="請輸入搜索關鍵字..." id="searchBar">
             
       </form>
@@ -88,21 +88,65 @@
                     </tr>
                     }
                 </tbody>
+                @*<tbody>
+                    @foreach (var item in Model.CardInfoDB){
+                     <tr>
+                         <td>
+                             @Html.DisplayFor(modelItem => item.Id)
+                         </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Version)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VersionEnvironment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Number)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rank)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SpecialRule)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TypeDetail)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Hp)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Attribute)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ImgUrl)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReleaseDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpdateDate)
+                        </td>
+                        <td>
+                            <a asp-page="./CardEditPro" asp-route-id="@item.Id">編輯</a> |
+                            <a asp-page="./CardDetailPro" asp-route-id="@item.Id">查看</a> |
+                            <a asp-page="./CardDelPro" asp-route-id="@item.Id">刪除</a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>*@
 			</table>
 		</div>
 	</div>
 </div>
 
 <script>
-  //  function key_down(e) {
-  //  if(e.keyCode === 13) {
-  //    //search_func();
-  //  }
-  //}
-
-  //function search_func() {
-  //  //var address = document.getElementById("address").value;
-  //  //initialize();
-  //}
+  
 </script>
 

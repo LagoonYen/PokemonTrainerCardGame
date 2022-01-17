@@ -1,5 +1,5 @@
 ﻿@page
-@model PokemonTrainerCardGame.Pages.CardEditTest.CardDelProModel
+@model PokemonTrainerCardGame.Pages.RazorPagesAndWebAPI.CardDetailProModel
 @{
 }
 <div class="container">
@@ -90,9 +90,5 @@
         </dd>
     </dl>
 </div>
-        
-<form method="post">
-        <input type="hidden" asp-for="@Model.CardInfoDB.Id" />
-        <input type="submit" Value="刪除" class="btn btn-danger" asp-page-handler="Del"/> |
-        <a asp-page="./CardIndexPro">返回列表</a>
-    </form>
+
+<a asp-page="./CardIndexPro">返回列表</a>

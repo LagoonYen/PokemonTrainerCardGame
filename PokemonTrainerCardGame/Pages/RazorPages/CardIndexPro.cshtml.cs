@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PokemonTrainerCardGame.Pages.CardEditTest
+namespace PokemonTrainerCardGame.Pages.RazorPages
 {
     public class CardIndexProModel : PageModel
     {
@@ -36,7 +36,8 @@ namespace PokemonTrainerCardGame.Pages.CardEditTest
                     for (var i = 0; i < spliteSearchString.Length; i++)
                     {
                         var Keywords = spliteSearchString[i];
-                        card = card.Where(x => x.Name.Contains(Keywords) || x.Version.Contains(Keywords));
+                        //card = card.Where(x => x.Name.Contains(Keywords) || x.Version.Contains(Keywords) || x.VersionEnvironment.Contains(Keywords));
+                        card = card.Where(x => new[] { x.Name, x.Version, x.VersionEnvironment }.Any(x => x.Contains(Keywords)));
                     }
                 }
                 else
@@ -46,27 +47,5 @@ namespace PokemonTrainerCardGame.Pages.CardEditTest
             }
             CardInfoDB = card;
         }
-        //public async Task OnGetAsync()
-        //{
-        //    var card = await _cardService.OnGetAllCard();
-
-        //    if (!string.IsNullOrEmpty(SearchString))
-        //    {
-        //        if (SearchString.Contains(" "))
-        //        {
-        //            var spliteSearchString = SearchString.Split(" ");
-        //            for (var i = 0; i < spliteSearchString.Length; i++)
-        //            {
-        //                var Keywords = spliteSearchString[i];
-        //                card = card.Where(x => x.Name.Contains(Keywords) || x.Version.Contains(Keywords));
-        //            }
-        //        }
-        //        else
-        //        {
-        //            card = card.Where(x => x.Name.Contains(SearchString));
-        //        }
-        //    }
-        //    CardInfoDB = card;
-        //}
     }
 }

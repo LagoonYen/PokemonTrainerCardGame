@@ -5,7 +5,7 @@ using PokemonTrainerCardGame.ModelsOfViews;
 using PokemonTrainerCardGame.Service;
 using System.Threading.Tasks;
 
-namespace PokemonTrainerCardGame.Pages.CardEditTest
+namespace PokemonTrainerCardGame.Pages.RazorPagesAndWebAPI
 {
     public class CardDelProModel : PageModel
     {

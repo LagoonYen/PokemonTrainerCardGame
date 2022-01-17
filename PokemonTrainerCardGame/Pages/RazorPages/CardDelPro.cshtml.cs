@@ -1,20 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Newtonsoft.Json;
 using PokemonTrainerCardGame.Models;
 using PokemonTrainerCardGame.ModelsOfViews;
 using PokemonTrainerCardGame.Service;
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace PokemonTrainerCardGame.Pages.CardEditTest
+namespace PokemonTrainerCardGame.Pages.RazorPages
 {
-    public class CardEditProModel : PageModel
+    public class CardDelProModel : PageModel
     {
         private readonly CardService _cardService;
 
-        public CardEditProModel(CardService cardService)
+        public CardDelProModel(CardService cardService)
         {
             _cardService = cardService;
         }
@@ -22,13 +19,13 @@ namespace PokemonTrainerCardGame.Pages.CardEditTest
         [BindProperty]
         public CardInformationProViewModel CardInfoDB { get; set; }
 
-        public async Task<IActionResult> OnGet(int? id)
+        public async Task<IActionResult> OnGet(int id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            var card = await _cardService.GetCardInfoById((int)id);
+            var card = await _cardService.GetCardInfoById(id);
             if (card == null)
             {
                 return NotFound();
@@ -37,10 +34,10 @@ namespace PokemonTrainerCardGame.Pages.CardEditTest
             return Page();
         }
 
-        public async Task<IActionResult> OnPostEdit([FromForm] CardInformationPro CardInfoDB)
+        public IActionResult OnPostDel([FromForm] CardInformationPro CardInfoDB)
         {
             CardInformationPro NewCardData = CardInfoDB;
-            await _cardService.OnPostEdit(NewCardData);
+            _cardService.OnPostDel(NewCardData);
             return RedirectToPage("./CardIndexPro");
         }
     }

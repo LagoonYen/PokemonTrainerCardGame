@@ -4,7 +4,7 @@ using PokemonTrainerCardGame.Models;
 using PokemonTrainerCardGame.Service;
 using System.Collections.Generic;
 
-namespace PokemonTrainerCardGame.Pages.CardEditTest
+namespace PokemonTrainerCardGame.Pages.RazorPagesAndWebAPI
 {
     public class CardInsertProModel : PageModel
     {

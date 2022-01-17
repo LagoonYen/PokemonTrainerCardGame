@@ -44,7 +44,19 @@ namespace PokemonTrainerCardGame.Repository
                 {
                     throw new Exception("找不到該筆資料!");
                 }
-                cardInfo = card;
+                cardInfo.Version = card.Version;
+                cardInfo.VersionEnvironment = card.VersionEnvironment;
+                cardInfo.Number = card.Number;
+                cardInfo.Rank = card.Rank;
+                cardInfo.SpecialRule = card.SpecialRule;
+                cardInfo.Type = card.Type;
+                cardInfo.TypeDetail = card.TypeDetail;
+                cardInfo.Hp = card.Hp;
+                cardInfo.Name = card.Name;
+                cardInfo.Attribute = card.Attribute;
+                cardInfo.ImgUrl = card.ImgUrl;
+                cardInfo.ReleaseDate = card.ReleaseDate;
+                cardInfo.UpdateDate = card.UpdateDate;
                 await _db.SaveChangesAsync();
             }
             catch

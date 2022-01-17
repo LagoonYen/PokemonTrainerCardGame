@@ -4,16 +4,16 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PokemonTrainerCardGame.Data;
 using PokemonTrainerCardGame.Service;
 using PokemonTrainerCardGame.Repository;
 using PokemonTrainerCardGame.Common;
 using PokemonTrainerCardGame.Models;
+using Microsoft.OpenApi.Models;
+using System.IO;
+using System;
+using System.Reflection;
 
 namespace PokemonTrainerCardGame
 {
@@ -29,14 +29,44 @@ namespace PokemonTrainerCardGame
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddRazorPages();
+            services.AddControllers();  //controller相關
+            services.AddRazorPages();  //razor page相關 
 
+            //db相關
             services.AddDbContext<PokemonTrainerCardGameContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PokemonTrainerCardGameContext")));
 
             //services.AddDbContext<PokemonTrainerCardGameContext>(options =>
-                    //options.UseSqlServer(Configuration.GetConnectionString("PTCGDB")));
-            
+            //options.UseSqlServer(Configuration.GetConnectionString("PTCGDB")));
+
+            //swagger相關
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { 
+                    Title = "PTCG API", 
+                    Version = "v1",
+                    Description = "寶可夢卡牌CRUD",
+                    //範例
+                    //TermsOfService = new Uri("https://igouist.github.io/"),
+                    //Contact = new OpenApiContact
+                    //{
+                    //    Name = "Igouist",
+                    //    Email = string.Empty,
+                    //    Url = new Uri("https://igouist.github.io/about/"),
+                    //},
+                    //License = new OpenApiLicense
+                    //{
+                    //    Name = "TEST",
+                    //    Url = new Uri("https://igouist.github.io/about/"),
+                    //}
+                });
+
+                // 讀取 XML 檔案產生 API 說明
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+
             //DI註冊CardService及Repository的實作
             //services.AddScoped<CardService, CardServiceImp>();
             services.AddScoped<CardService, CardServiceImpEF>();
@@ -46,7 +76,6 @@ namespace PokemonTrainerCardGame
             services.AddScoped<AppSetting, AppSettingImp>();
 
             services.AddTransient<PTCGWebApplicationContext>();
-            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +84,14 @@ namespace PokemonTrainerCardGame
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                //Swagger相關
+                app.UseSwagger();
+                app.UseSwaggerUI(x =>
+                {
+                    x.SwaggerEndpoint("/swagger/v1/swagger.json", "PTCG Api");
+                    x.RoutePrefix = string.Empty;
+                });
             }
             else
             {
@@ -66,13 +103,14 @@ namespace PokemonTrainerCardGame
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseRouting();
+            app.UseRouting();  //Razor Page相關
 
-            app.UseAuthorization();
+            app.UseAuthorization();  //Razor Page相關
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
+                endpoints.MapRazorPages();  //Razor Page相關
+                endpoints.MapControllers();  //API Controller相關
             });
         }
     }

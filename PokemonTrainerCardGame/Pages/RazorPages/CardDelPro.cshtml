@@ -1,0 +1,98 @@
+﻿@page
+@model PokemonTrainerCardGame.Pages.RazorPages.CardDelProModel
+@{
+}
+<div class="container">
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardInfoDB.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardInfoDB.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardInfoDB.Version)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardInfoDB.Version)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardInfoDB.VersionEnvironment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardInfoDB.VersionEnvironment)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardInfoDB.Number)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardInfoDB.Number)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardInfoDB.Rank)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardInfoDB.Rank)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardInfoDB.SpecialRule)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardInfoDB.SpecialRule)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardInfoDB.Type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardInfoDB.Type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardInfoDB.TypeDetail)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardInfoDB.TypeDetail)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardInfoDB.Hp)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardInfoDB.Hp)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardInfoDB.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardInfoDB.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardInfoDB.Attribute)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardInfoDB.Attribute)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardInfoDB.ImgUrl)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardInfoDB.ImgUrl)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardInfoDB.ReleaseDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardInfoDB.ReleaseDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CardInfoDB.UpdateDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CardInfoDB.UpdateDate)
+        </dd>
+    </dl>
+</div>
+        
+<form method="post">
+        <input type="hidden" asp-for="@Model.CardInfoDB.Id" />
+        <input type="submit" Value="刪除" class="btn btn-danger" asp-page-handler="Del"/> |
+        <a asp-page="./CardIndexPro">返回列表</a>
+    </form>
