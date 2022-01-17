@@ -2,11 +2,12 @@
 @model PokemonTrainerCardGame.Pages.CardEditTest.CardIndexProModel
 @{
 }
-<div class="wrap my-2">
+<div class="my-2">
    <div class="search">
        <form>
             <button class="btn btn-warning my-2"><a asp-page="/CardEditTest/CardInsertPro">新增卡片</a></button>
-            <input autocomplete="off" type="search" asp-for="SearchString" class="searchTerm" placeholder="請輸入搜索關鍵字..." id="searchBar" onClick="search_func()">
+            <input autocomplete="off" type="search" asp-for="SearchString" class="searchTerm" placeholder="請輸入搜索關鍵字..." id="searchBar">
+            
       </form>
    </div>
 </div>
@@ -93,15 +94,15 @@
 </div>
 
 <script>
-    function key_down(e) {
-    if(e.keyCode === 13) {
-      search_func();
-    }
-  }
+  //  function key_down(e) {
+  //  if(e.keyCode === 13) {
+  //    //search_func();
+  //  }
+  //}
 
-  function search_func() {
-    //var address = document.getElementById("address").value;
-    initialize();
-  }
+  //function search_func() {
+  //  //var address = document.getElementById("address").value;
+  //  //initialize();
+  //}
 </script>
 

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PokemonTrainerCardGame.Models;
+using PokemonTrainerCardGame.ModelsOfViews;
 using PokemonTrainerCardGame.Service;
 using System.Threading.Tasks;
 
@@ -16,7 +17,7 @@ namespace PokemonTrainerCardGame.Pages.CardEditTest
         }
 
         [BindProperty]
-        public CardInfomationPro CardInfoDB { get; set; }
+        public CardInformationProViewModel CardInfoDB { get; set; }
 
         public async Task<IActionResult> OnGet(int id)
         {
@@ -24,7 +25,7 @@ namespace PokemonTrainerCardGame.Pages.CardEditTest
             {
                 return NotFound();
             }
-            var card = _cardService.GetCardInfoById(id);
+            var card = await _cardService.GetCardInfoById(id);
             if (card == null)
             {
                 return NotFound();
@@ -33,9 +34,9 @@ namespace PokemonTrainerCardGame.Pages.CardEditTest
             return Page();
         }
 
-        public IActionResult OnPostDel([FromForm] CardInfomationPro CardInfoDB)
+        public IActionResult OnPostDel([FromForm] CardInformationPro CardInfoDB)
         {
-            CardInfomationPro NewCardData = CardInfoDB;
+            CardInformationPro NewCardData = CardInfoDB;
             _cardService.OnPostDel(NewCardData);
             return RedirectToPage("./CardIndexPro");
         }

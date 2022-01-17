@@ -1,22 +1,26 @@
 ﻿using PokemonTrainerCardGame.Models;
+using PokemonTrainerCardGame.ModelsOfViews;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PokemonTrainerCardGame.Service
 {
     public interface CardService
     {
         //搜尋
-        IEnumerable<CardInfomationPro> OnGetAllCard();
-        CardInfomationPro GetCardInfoById(int id);
-        IEnumerable<CardInfomationPro> Search();
+        Task<IEnumerable<CardInformationProViewModel>> OnGetAllCard();
+
+        Task<CardInformationProViewModel> GetCardInfoById(int id);
+        //CardInfomationPro GetCardInfoById(int id);
 
         //新增
-        int OnPostInsert(CardInfomationPro card);
+        Task OnPostInsert(CardInformationPro card);
         
         //修改
-        int OnPostEdit(CardInfomationPro card);
-        
+        Task OnPostEdit(CardInformationPro card);
+        //int OnPostEdit(CardInfomationPro card);
+
         //刪除
-        int OnPostDel(CardInfomationPro card);
+        Task OnPostDel(CardInformationPro card);
     }
 }

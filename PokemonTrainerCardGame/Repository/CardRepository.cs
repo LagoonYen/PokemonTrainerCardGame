@@ -1,22 +1,23 @@
 ﻿using PokemonTrainerCardGame.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace PokemonTrainerCardGame.Repository
 {
     public interface CardRepository
     {
         //搜尋
-        IEnumerable<CardInfomationPro> OnGetAllCard();
-        CardInfomationPro GetCardInfoById(int id);
-        IEnumerable<CardInfomationPro> Search(); //未用到
+        Task<IEnumerable<CardInformationPro>> OnGetAllCard();
+        Task<CardInformationPro> GetCardInfoById(int id);
 
         //新增
-        int OnPostInsert(CardInfomationPro card);
+        Task OnPostInsert(CardInformationPro card);
 
         //修改
-        int OnPostEdit(CardInfomationPro card);
+        Task OnPostEdit(CardInformationPro card);
+        //int OnPostEdit(CardInfomationPro card);
 
         //刪除
-        int OnPostDel(CardInfomationPro card);
+        Task OnPostDel(CardInformationPro card);
     }
 }

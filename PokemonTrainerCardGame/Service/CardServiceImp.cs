@@ -4,11 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using System.Threading.Tasks;
 
 namespace PokemonTrainerCardGame.Service
 {
-    public class CardServiceImp : CardService
+    //記得Interface
+    public class CardServiceImp
     {
         private readonly CardRepository _cardRepository;
         public CardServiceImp(CardRepository cardRepository)
@@ -17,45 +18,41 @@ namespace PokemonTrainerCardGame.Service
         }
 
         //搜尋
-        public IEnumerable<CardInfomationPro> OnGetAllCard()
+        public async Task<IEnumerable<CardInformationPro>> OnGetAllCard()
         {
-            var cardInfo = _cardRepository.OnGetAllCard();
+            var cardInfo = await _cardRepository.OnGetAllCard();
 
-            return cardInfo;
-        }
-        public CardInfomationPro GetCardInfoById(int id)
-        {
-            var cardInfo = _cardRepository.GetCardInfoById(id);
-
+            //拿掉IE
             return cardInfo;
         }
 
-        public IEnumerable<CardInfomationPro> Search()
+        public async Task<CardInformationPro> GetCardInfoById(int id)
         {
-            throw new NotImplementedException();
+            var cardInfo = await _cardRepository.GetCardInfoById(id);
+            return cardInfo;
         }
 
         //新增
-        public int OnPostInsert(CardInfomationPro card)
+        public async Task OnPostInsert(CardInformationPro card)
         {
             //取得寫入時間
             var Time = DateTime.Now;
             card.ReleaseDate = card.UpdateDate = Time;
-            return _cardRepository.OnPostInsert(card);
+            await _cardRepository.OnPostInsert(card);
         }
 
         //修改
-        public int OnPostEdit(CardInfomationPro card)
+        public async Task OnPostEdit(CardInformationPro card)
         {
             var Time = DateTime.Now;
             card.UpdateDate = Time;
-            return _cardRepository.OnPostEdit(card);
+            await _cardRepository.OnPostEdit(card);
         }
 
         //刪除
-        public int OnPostDel(CardInfomationPro card)
+        public async Task OnPostDel(CardInformationPro card)
         {
-            return _cardRepository.OnPostDel(card);
+            await _cardRepository.OnPostDel(card);
         }
     }
 }

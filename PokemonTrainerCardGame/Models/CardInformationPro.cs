@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace PokemonTrainerCardGame.Models
 {
-    public partial class CardInfomationPro
+    public class CardInformationPro
     {
         public int Id { get; set; }
         public string Version { get; set; }

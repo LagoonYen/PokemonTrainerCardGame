@@ -1,6 +1,9 @@
-﻿using PokemonTrainerCardGame.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using PokemonTrainerCardGame.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PokemonTrainerCardGame.Repository
 {
@@ -14,37 +17,61 @@ namespace PokemonTrainerCardGame.Repository
         }
 
         //搜尋
-        public IEnumerable<CardInfomationPro> OnGetAllCard()
+        public async Task<IEnumerable<CardInformationPro>> OnGetAllCard()
         {
-            return (IEnumerable<CardInfomationPro>)_db.CardInfomationPros.ToList();
+            return await _db.CardInfomationPros.ToListAsync();
         }
 
-        public CardInfomationPro GetCardInfoById(int id)
+        public async Task<CardInformationPro> GetCardInfoById(int id)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<CardInfomationPro> Search()
-        {
-            throw new System.NotImplementedException();
+            return await _db.CardInfomationPros.FindAsync(id);
         }
 
         //新增
-        public int OnPostInsert(CardInfomationPro card)
+        public async Task OnPostInsert(CardInformationPro card)
         {
-            throw new System.NotImplementedException();
+            await _db.AddAsync(card);
+            await _db.SaveChangesAsync();
         }
 
         //修改
-        public int OnPostEdit(CardInfomationPro card)
+        public async Task OnPostEdit(CardInformationPro card)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var cardInfo = await _db.CardInfomationPros.FindAsync(card.Id);
+                if (cardInfo == null)
+                {
+                    throw new Exception("找不到該筆資料!");
+                }
+                cardInfo = card;
+                await _db.SaveChangesAsync();
+            }
+            catch
+            {
+                throw;  
+            }
+                
         }
 
         //刪除
-        public int OnPostDel(CardInfomationPro card)
+        public async Task OnPostDel(CardInformationPro card)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                var cardInfo = await _db.CardInfomationPros.FindAsync(card.Id);
+                if(cardInfo == null)
+                {
+                    throw new Exception("找不到該筆資料!");
+                }
+                //找不到RemoveAsync
+                _db.CardInfomationPros.Remove(cardInfo);
+                await _db.SaveChangesAsync();
+            }
+            catch
+            {
+                throw;
+            }
         }
     }
 }

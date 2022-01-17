@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PokemonTrainerCardGame.Models;
+using PokemonTrainerCardGame.ModelsOfViews;
 using PokemonTrainerCardGame.Service;
+using System.Threading.Tasks;
 
 namespace PokemonTrainerCardGame.Pages.CardEditTest
 {
@@ -14,11 +16,11 @@ namespace PokemonTrainerCardGame.Pages.CardEditTest
             _cardService = cardService;
         }
 
-        public CardInfomationPro CardInfoDB { get; set; }
+        public CardInformationProViewModel CardInfoDB { get; set; }
 
-        public ActionResult OnGet(int id)
+        public async Task<IActionResult> OnGet(int id)
         {
-            var  card = _cardService.GetCardInfoById(id);
+            var  card = await _cardService.GetCardInfoById(id);
             CardInfoDB = card;
             return Page();
         }

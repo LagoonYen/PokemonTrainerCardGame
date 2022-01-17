@@ -1,6 +1,10 @@
 ﻿using PokemonTrainerCardGame.Models;
+using PokemonTrainerCardGame.ModelsOfViews;
 using PokemonTrainerCardGame.Repository;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace PokemonTrainerCardGame.Service
 {
@@ -13,38 +17,75 @@ namespace PokemonTrainerCardGame.Service
         }
 
         //搜尋
-        public IEnumerable<CardInfomationPro> OnGetAllCard()
+        public async Task<IEnumerable<CardInformationProViewModel>> OnGetAllCard()
         {
-            var cardInfo = _cardRepository.OnGetAllCard();
-
-            return cardInfo;
+            var cardInfo = await _cardRepository.OnGetAllCard();
+            return cardInfo.OrderBy(x => x.Version)
+                .ThenBy(x => x.Number)
+                .Select(x => new CardInformationProViewModel
+                {
+                    Id = x.Id,
+                    Version = x.Version,
+                    VersionEnvironment = x.VersionEnvironment,
+                    Number = x.Number,
+                    Rank = x.Rank,
+                    SpecialRule = x.SpecialRule,
+                    Type = x.Type,
+                    TypeDetail = x.TypeDetail,
+                    Hp = x.Hp,
+                    Name = x.Name,
+                    Attribute = x.Attribute,
+                    ImgUrl = x.ImgUrl,
+                    ReleaseDate = x.ReleaseDate.ToString("yyyy/MM/dd"),
+                    UpdateDate = x.UpdateDate.ToString("yyyy/MM/dd"),
+                });
         }
 
-        public CardInfomationPro GetCardInfoById(int id)
+        public async Task<CardInformationProViewModel> GetCardInfoById(int id)
         {
-            throw new System.NotImplementedException();
+            var cardInfo = await _cardRepository.GetCardInfoById(id);
+            
+            return new CardInformationProViewModel
+            {
+                Id = cardInfo.Id,
+                Version = cardInfo.Version,
+                VersionEnvironment = cardInfo.VersionEnvironment,
+                Number = cardInfo.Number,
+                Rank = cardInfo.Rank,
+                SpecialRule = cardInfo.SpecialRule,
+                Type = cardInfo.Type,
+                TypeDetail = cardInfo.TypeDetail,
+                Hp = cardInfo.Hp,
+                Name = cardInfo.Name,
+                Attribute = cardInfo.Attribute,
+                ImgUrl = cardInfo.ImgUrl,
+                ReleaseDate = cardInfo.ReleaseDate.ToString("g"),
+                UpdateDate = cardInfo.UpdateDate.ToString("g"),
+            };
         }
-        public IEnumerable<CardInfomationPro> Search()
-        {
-            throw new System.NotImplementedException();
-        }
+
 
         //新增
-        public int OnPostInsert(CardInfomationPro card)
+        public async Task OnPostInsert(CardInformationPro card)
         {
-            throw new System.NotImplementedException();
+            //取得寫入時間
+            var Time = DateTime.Now;
+            card.ReleaseDate = card.UpdateDate = Time;
+            await _cardRepository.OnPostInsert(card);
         }
 
         //修改
-        public int OnPostEdit(CardInfomationPro card)
+        public async Task OnPostEdit(CardInformationPro card)
         {
-            throw new System.NotImplementedException();
+            var Time = DateTime.Now;
+            card.UpdateDate = Time;
+            await _cardRepository.OnPostEdit(card);
         }
 
         //刪除
-        public int OnPostDel(CardInfomationPro card)
+        public async Task OnPostDel(CardInformationPro card)
         {
-            throw new System.NotImplementedException();
+            await _cardRepository.OnPostDel(card);
         }
     }
 }

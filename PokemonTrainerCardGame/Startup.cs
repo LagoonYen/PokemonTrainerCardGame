@@ -33,12 +33,16 @@ namespace PokemonTrainerCardGame
 
             services.AddDbContext<PokemonTrainerCardGameContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("PokemonTrainerCardGameContext")));
+
             //services.AddDbContext<PokemonTrainerCardGameContext>(options =>
                     //options.UseSqlServer(Configuration.GetConnectionString("PTCGDB")));
+            
+            //DI註冊CardService及Repository的實作
             //services.AddScoped<CardService, CardServiceImp>();
             services.AddScoped<CardService, CardServiceImpEF>();
             //services.AddScoped<CardRepository, CardRepositoryImp>();
             services.AddScoped<CardRepository, CardRepositoryImpEF>();
+
             services.AddScoped<AppSetting, AppSettingImp>();
 
             services.AddTransient<PTCGWebApplicationContext>();

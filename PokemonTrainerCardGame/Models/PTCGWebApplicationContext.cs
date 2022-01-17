@@ -19,7 +19,7 @@ namespace PokemonTrainerCardGame.Models
 
         public virtual DbSet<CardAttribute> CardAttributes { get; set; }
         public virtual DbSet<CardInfomation> CardInfomations { get; set; }
-        public virtual DbSet<CardInfomationPro> CardInfomationPros { get; set; }
+        public virtual DbSet<CardInformationPro> CardInfomationPros { get; set; }
         public virtual DbSet<CardRank> CardRanks { get; set; }
         public virtual DbSet<CardSpecialRule> CardSpecialRules { get; set; }
         public virtual DbSet<CardType> CardTypes { get; set; }
@@ -62,7 +62,7 @@ namespace PokemonTrainerCardGame.Models
                     .HasMaxLength(50);
             });
 
-            modelBuilder.Entity<CardInfomationPro>(entity =>
+            modelBuilder.Entity<CardInformationPro>(entity =>
             {
                 entity.ToTable("CardInfomationPro");
 

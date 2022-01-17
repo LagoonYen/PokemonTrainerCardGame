@@ -16,7 +16,7 @@ namespace PokemonTrainerCardGame.Pages.CardEditTest
         }
 
         [BindProperty]
-        public CardInfomationPro CardInfoDB { get; set; }
+        public CardInformationPro CardInfoDB { get; set; }
 
         //public IEnumerable<CardInfomationPro> sele { get; set; }
 
@@ -25,9 +25,9 @@ namespace PokemonTrainerCardGame.Pages.CardEditTest
             
         }
 
-        public IActionResult OnPostInsert([FromForm] CardInfomationPro CardInfoDB)
+        public IActionResult OnPostInsert([FromForm] CardInformationPro CardInfoDB)
         {
-            CardInfomationPro NewCardData = CardInfoDB;
+            CardInformationPro NewCardData = CardInfoDB;
             _cardService.OnPostInsert(NewCardData);
             return RedirectToPage("./CardIndexPro");
         }
