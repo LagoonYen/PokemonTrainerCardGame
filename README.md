@@ -1,0 +1,2 @@
+# PokemonTrainerCardGame
+初次上班後學習使用razor page架構前端
